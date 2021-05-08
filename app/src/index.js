@@ -11,6 +11,7 @@ const App = {
 
     try {
       // get contract instance
+      // const chainId = await web3.eth.getChainId();
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = starNotaryArtifact.networks[networkId];
       this.meta = new web3.eth.Contract(
@@ -31,6 +32,11 @@ const App = {
     status.innerHTML = message;
   },
 
+  setResult: function(message) {
+    const status = document.getElementById("results");
+    status.innerHTML = message;
+  },
+
   createStar: async function() {
     const { createStar } = this.meta.methods;
     const name = document.getElementById("starName").value;
@@ -42,14 +48,16 @@ const App = {
   // Implement Task 4 Modify the front end of the DAPP
   lookUp: async function (){
     const { lookUptokenIdToStarInfo } = this.meta.methods;
-    const lookid = document.getElementById("lookid").value;
-    let info = await lookUptokenIdToStarInfo(lookid).call({from: this.account});
-    App.setStatus("Star name is" + info +".");
+    const id = document.getElementById("lookid").value;
+    let info = await lookUptokenIdToStarInfo(id).call({from: this.account});
+    App.setResult("Star name is " + info +" .");
   }
 
 };
 
 window.App = App;
+
+// window.addEventListener('load', async () => { await ethereum.enable()})
 
 window.addEventListener("load", async function() {
   if (window.ethereum) {
