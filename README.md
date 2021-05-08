@@ -10,9 +10,9 @@
 
 `STC`
 
-## Version of Truffle
+## Version of Truffle and Open
 
-`Truffle v5.3.3`
+`Truffle v5.3.3 openzeppelin-solidity v2.3.0`
 
 ##  Rinkeby Transaction
 
